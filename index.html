@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ ANIMATED BACKGROUND (fixed, flows behind all glass panels) ============ -->
+<div class="bg-flow" aria-hidden="true">
+  <div class="bg-flow__gradient"></div>
+  <div class="bg-flow__blob bg-flow__blob--1"></div>
+  <div class="bg-flow__blob bg-flow__blob--2"></div>
+  <div class="bg-flow__blob bg-flow__blob--3"></div>
+  <svg class="bg-flow__waves" viewBox="0 0 2400 400" preserveAspectRatio="none">
+    <path class="wave wave--back" d="M0,200 C 300,120 600,280 900,200 C 1200,120 1500,280 1800,200 C 2000,150 2200,150 2400,200 L2400,400 L0,400 Z" />
+    <path class="wave wave--front" d="M0,240 C 300,300 600,180 900,240 C 1200,300 1500,180 1800,240 C 2000,270 2200,270 2400,240 L2400,400 L0,400 Z" />
+  </svg>
+</div>
+
+<!-- ============ NAV ============ -->
+<!-- Links are generated from CONFIG.nav in config.js — don't hardcode them here. -->
+<nav class="taskbar" id="taskbar">
+  <a href="#hero" class="taskbar__brand" id="navBrand">—</a>
+  <ul class="taskbar__links" id="navLinks"></ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__content">
+    <p class="eyebrow" id="heroEyebrow"></p>
+    <h1><span id="typedName" aria-hidden="true"></span></h1>
+    <p class="hero__sub" id="heroSub"></p>
+    <div class="hero__actions" id="heroActions"></div>
+  </div>
+  <a href="#about" class="scroll-cue" aria-label="Scroll to content">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 4v14M6 12l6 6 6-6"/>
+    </svg>
+  </a>
+</header>
+
+<!-- ============ TRACE RAIL (signature scroll-progress line) ============ -->
+<svg class="trace-rail" id="traceRail" viewBox="0 0 40 2400" preserveAspectRatio="none" aria-hidden="true">
+  <path id="traceRailPath" d="M20,0 L20,2400" class="trace-rail__bg"/>
+  <path id="traceRailProgress" d="M20,0 L20,2400" class="trace-rail__progress"/>
+</svg>
+
+<main>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="section__inner about">
+      <div class="about__portrait">
+        <div class="portrait-frame">
+          <img id="aboutPhoto" src="" alt="">
+        </div>
+      </div>
+      <div class="about__content">
+        <p class="label" id="aboutLabel"></p>
+        <h2 id="aboutHeading"></h2>
+        <div id="aboutBio"></div>
+        <p id="aboutLocation"></p>
+        <div class="about__cv-actions" id="aboutCvActions"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS + EDUCATION ============ -->
+  <section class="section" id="skills">
+    <div class="section__inner skills">
+      <div class="skills__col">
+        <p class="label">Skills</p>
+        <div class="skills__group">
+          <h3>Hardware</h3>
+          <ul class="skill-list" id="skillsHardware"></ul>
+        </div>
+        <div class="skills__group">
+          <h3>Software</h3>
+          <ul class="skill-list" id="skillsSoftware"></ul>
+        </div>
+      </div>
+      <div class="skills__col">
+        <p class="label">Education</p>
+        <div id="educationList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="section" id="projects">
+    <div class="section__inner">
+      <p class="label">Projects</p>
+      <h2 class="section__title">Selected work</h2>
+      <div class="project-grid" id="projectGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ CERTIFICATIONS ============ -->
+  <section class="section" id="certifications">
+    <div class="section__inner">
+      <p class="label">Certifications</p>
+      <h2 class="section__title">Certifications</h2>
+      <p class="section__hint">Click a card for details</p>
+      <div class="cert-row" id="certRow"></div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="section" id="experience">
+    <div class="section__inner">
+      <p class="label">Experience</p>
+      <h2 class="section__title">Where I've worked</h2>
+      <div class="exp-row" id="expRow"></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section" id="contact">
+    <div class="section__inner contact">
+      <div class="contact__intro">
+        <p class="label">Contact</p>
+        <h2 id="contactHeading"></h2>
+        <p id="contactText"></p>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <label>
+          Email
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="5" placeholder="What's on your mind?" required></textarea>
+        </label>
+        <button type="submit" class="btn btn--primary">Send</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__socials" id="footerSocials"></div>
+  <p id="footerNote"></p>
+</footer>
+
+<!-- ============ MODAL (shared for certs + experience) ============ -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <button class="modal__nav modal__nav--prev" id="modalPrev" aria-label="Previous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal__close" id="modalClose" aria-label="Close">✕</button>
+    <div class="modal__logo" id="modalLogo">◆</div>
+    <h3 id="modalTitle">Title</h3>
+    <p class="modal__meta" id="modalMeta">Meta line</p>
+    <p id="modalDesc">Description</p>
+    <p class="modal__count" id="modalCount"></p>
+  </div>
+  <button class="modal__nav modal__nav--next" id="modalNext" aria-label="Next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+</div>
+
+<!-- All content lives in config.js — edit that file, not this one. -->
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
